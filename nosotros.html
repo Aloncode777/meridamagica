@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merida Magica</title>
+    <link rel="stylesheet" href="estilo.css">
+    
+</head>
+<body>
+
+<nav class="navbar">
+
+<div>
+
+        <a class="logo" href="index.html">
+          <img src="img/M_logo.png" alt="logo" width="55px" height="auto" >
+        </a>
+
+</div>
+
+<div>
+
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdgJAMS53zEaR9kqs9JgmKtZc0khmXAusocyMLUa-GyuriWAQ/viewform?embedded=true">Encuestas</a>
+
+</div>
+
+<div>
+        <a class="nav-link" href="./nosotros.html">Nosotros</a>
+</div>
+
+<div class="dropdown">
+
+  <input type="checkbox" id="toggle-menu" />
+  <label for="toggle-menu">Más opciones ▾</label>
+
+    <div class="dropdown-menu" role="menu" aria-labelledby="toggle-menu">
+
+      <a href="./cultura.html">Cultura</a>
+      <a href="./atracciones.html">Atracciones</a>
+      <a href="./flora.html">Flora y Fauna</a>
+      <a href="./musica.html">Musica</a>
+
+    </div>
+     
+    
+</nav>
+
+<div class="cabecera_img">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjqaN0ErSarhT0xvLPlo1OcDdbbg94YlTlJQ&s" alt="Imagen 1" width="100%" height="100%"/>
+
+<h1 class="titulo_cultura">Bienvenido</h1>
+    
+</div>
+
+<div class="rectangulo_1">
+
+</div>
+
+<div class="rectangulo_2">
+
+</div>
+        
+<header>
+    <h1>Sobre Nosotros</h1>
+    <p>Fomentando la cultura merideña</p>
+</header>
+<section class="introduccion">
+    <h2>¿Quiénes Somos?</h2>
+    <p>Somos un grupo de apasionados por la cultura merideña, dedicados a promover y preservar nuestras tradiciones, gastronomía y costumbres.</p>
+</section>
+
+<section class="mision-vision">
+    <div class="mision">
+        <h2>Misión</h2>
+        <p>Nuestra misión es educar y conectar a las personas con la rica cultura de Mérida, a través de eventos, talleres y recursos en línea.</p>
+    </div>
+    <div class="vision">
+        <h2>Visión</h2>
+        <p>Queremos ser un referente en la promoción de la cultura merideña, inspirando a las futuras generaciones a valorar y celebrar nuestras raíces.</p>
+    </div>
+</section>
+
+  <section class="slideshow-container" aria-label="Quiénes somos slideshow">
+    <div class="slide">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7e072501-672d-4517-9b3b-8e4116898822.png" alt="Foto de Persona 1, cofundadora y directora ejecutiva" class="active" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d085e36c-a490-4b02-9aeb-d3bde165083d.png" alt="Foto de Persona 2, líder de desarrollo tecnológico" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cfae5246-e254-4c7e-8c2e-b893f67dc3b3.png" alt="Foto de Persona 3, responsable de marketing y comunicaciones" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d085e36c-a490-4b02-9aeb-d3bde165083d.png" alt="Foto de Persona 4, líder de desarrollo tecnológico" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cfae5246-e254-4c7e-8c2e-b893f67dc3b3.png" alt="Foto de Persona 5, responsable de marketing y comunicaciones" />
+    </div>
+    <div class="description" aria-live="polite">
+      <h3 id="slide-title">Persona 1 - Cofundadora y Directora Ejecutiva</h3>
+      <p id="slide-desc">
+        Con más de 15 años liderando proyectos innovadores, impulsa la visión y estrategia de la empresa.
+      </p>
+    </div>
+    <div class="dots" role="tablist" aria-label="Navegación de slides">
+      <button class="dot active" role="tab" aria-selected="true" aria-controls="slide-title" tabindex="0" aria-label="Mostrar perfil de Persona 1"></button>
+      <button class="dot" role="tab" aria-selected="false" aria-controls="slide-title" tabindex="-1" aria-label="Mostrar perfil de Persona 2"></button>
+      <button class="dot" role="tab" aria-selected="false" aria-controls="slide-title" tabindex="-1" aria-label="Mostrar perfil de Persona 3"></button>
+       <button class="dot" role="tab" aria-selected="false" aria-controls="slide-title" tabindex="-1" aria-label="Mostrar perfil de Persona 4"></button>
+        <button class="dot" role="tab" aria-selected="false" aria-controls="slide-title" tabindex="-1" aria-label="Mostrar perfil de Persona 5"></button>
+    </div>
+  </section>
+
+  <script>
+  const images = document.querySelectorAll('.slide img');
+  const dots = document.querySelectorAll('.dot');
+  const title = document.getElementById('slide-title');
+  const desc = document.getElementById('slide-desc');
+
+  // Data for each slide
+  const slideData = [
+    {
+      title: 'Persona 1 - Cofundadora y Directora Ejecutiva',
+      description: 'Con más de 15 años liderando proyectos innovadores, impulsa la visión y estrategia de la empresa.'
+    },
+    {
+      title: 'Persona 2 - Líder de Desarrollo Tecnológico',
+      description: 'Experta en ingeniería de software y arquitecturas escalables para soluciones educativas.'
+    },
+    {
+      title: 'Persona 3 - Responsable de Marketing y Comunicaciones',
+      description: 'Encargada de crear conexiones significativas con la comunidad y estratégicas campañas digitales.'
+    },
+    {
+      title: 'Persona 4 - Líder de Desarrollo Tecnológico',
+      description: 'Experta en ingeniería de software y arquitecturas escalables para soluciones educativas.'
+    },
+    {
+      title: 'Persona 5 - Responsable de Marketing y Comunicaciones',
+      description: 'Encargada de crear conexiones significativas con la comunidad y estratégicas campañas digitales.'
+    }
+  ];
+
+  let currentIndex = 0;
+  const slideCount = images.length;
+  let slideInterval = null;
+
+  function showSlide(index) {
+    // Clamp index to valid range
+    if (index < 0) index = slideCount - 1;
+    if (index >= slideCount) index = 0;
+    currentIndex = index;
+
+    // Update images
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+    });
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+      dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      dot.tabIndex = i === index ? 0 : -1;
+    });
+
+    // Update description
+    title.textContent = slideData[index].title;
+    desc.textContent = slideData[index].description;
+  }
+
+  // Start autoplay slideshow
+  function startAutoplay() {
+    slideInterval = setInterval(() => {
+      showSlide(currentIndex + 1);
+    }, 3000); // Change slide every 6 seconds
+  }
+
+  // Stop autoplay when manually changing slide
+  function stopAutoplay() {
+    clearInterval(slideInterval);
+  }
+
+  // Add event listeners to dots
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      stopAutoplay();
+      showSlide(i);
+      startAutoplay();
+    });
+    dot.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight') {
+        e.preventDefault();
+        stopAutoplay();
+        showSlide((i + 1) % slideCount);
+        startAutoplay();
+        dots[(i + 1) % slideCount].focus();
+      } else if(e.key === 'ArrowLeft') {
+        e.preventDefault();
+        stopAutoplay();
+        showSlide((i - 1 + slideCount) % slideCount);
+        startAutoplay();
+        dots[(i - 1 + slideCount) % slideCount].focus();
+      }
+    });
+  });
+
+  // Initialize
+  showSlide(currentIndex);
+  startAutoplay();
+</script>
+
+   
+
+<section class="cultura">
+    <h2>Cultura Merideña</h2>
+    <p>La cultura merideña es rica en tradiciones, música, danzas y gastronomía. Aquí te compartimos algunos aspectos destacados:</p>
+    <ul>
+        <li>Tradiciones y festividades</li>
+        <li>Gastronomía típica</li>
+        <li>Música y danzas folclóricas</li>
+    </ul>
+</section>
+
+
+
+
+</body>
+</html>

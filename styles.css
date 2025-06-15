@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Evita el desplazamiento durante el video */
+}
+
+.video-intro {
+    position: fixed; /* Fija el video en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 9999; /* Asegura que el video esté por encima del contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Asegura que el video cubra toda la pantalla */
+    display: block;
+}
+
+.contenido {
+    position: relative;
+    display: none; /* Oculta el contenido inicialmente */
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+}
+ @media (max-width: 640px) {
+    .video-intro video {
+     object-fit: initial;
+    }
+  }

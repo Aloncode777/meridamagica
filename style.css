@@ -1,0 +1,409 @@
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+  
+}
+
+
+/* Contenedor del carrusel como fondo */
+.background-carousel {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100vw;        /* Usar unidad de viewport para asegurar el ancho total */
+    height: 100vh;       /* Usar unidad de viewport para asegurar la altura total */
+    z-index: -1;
+    overflow: hidden;    /* Evitar barras de scroll si hay contenido fuera */
+}
+
+/* Imágenes dentro del carrusel */
+.background-carousel img {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;              /* Cubre el contenedor manteniendo aspecto */
+    top: 0; 
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    user-select: none;              /* Evitar selección que puede interferir */
+    pointer-events: none;           /* Evitar que las imágenes capten eventos de mouse */
+    
+}
+
+.background-carousel img.active {
+    opacity: 1;
+}
+/* Media Queries para ajustar el comportamiento en pantallas pequeñas */
+@media (max-width: 768px) {
+    .background-carousel img {
+        width: 100vw;
+        height: 100vh;          
+        object-fit: cover;
+    }
+}
+
+
+/* Contenido sobre el carrusel */
+.content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(46, 134, 193, 0.4);
+    border-radius: 0px 300px 300px 0px;
+    margin: 0 auto; /* Centrar el contenido */
+    min-width: 200px;
+    height: 92%;
+    
+    
+}
+
+/* Títulos */
+h1 {
+    font-size: 6vw; /* Tamaño de fuente relativo al ancho de la ventana */
+    max-font-size: 3em; /* Tamaño máximo para pantallas grandes */
+    margin-bottom: 0.4em;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+
+/* Párrafos */
+p {
+    font-size: 4vw; /* Tamaño de fuente relativo al ancho de la ventana */
+    max-font-size: 1.3em; /* Tamaño máximo para pantallas grandes */
+    max-width: 600px;
+    line-height: 1.4;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+/* Media Queries para ajustes responsivos */
+@media (max-width: 768px) {
+    .content {
+        padding: -15% -5%; /* Ajustar el padding en pantallas más pequeñas */
+        height: 92%;
+    }
+    h1 {
+        font-size: 8vw; /* Aumentar el tamaño de fuente en pantallas pequeñas */
+    }
+    p {
+        font-size: 5vw; /* Aumentar el tamaño de fuente en pantallas pequeñas */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: -20% -5%; /* Aumentar el padding en móviles */
+        height: 92%;
+    }
+    h1 {
+        font-size: 12vw; /* Aumentar aún más el tamaño de fuente en móviles */
+    }
+    p {
+        font-size: 6vw; /* Aumentar aún más el tamaño de fuente en móviles */
+    }
+}
+
+nav {
+    background-color: rgb(0, 63, 235);
+    display: flex;
+    flex-direction: row;  
+    justify-content: flex-end; /* Cambiar a flex-end para alinear a la derecha */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+    min-width: 200px;
+    width: 100%;
+
+     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("images/bg02.png");
+}
+
+.nav-link {
+    display: block;
+    color: white;
+    padding: 15px 20px; /* Ajustar el padding */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px; /* Reducir el tamaño de fuente */
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: #01a7e5;
+}
+@media(max-width: 460px ){
+  .nav-link{
+    font-size: 13px;
+    padding: 13px 13px;
+  }
+}
+
+/* Logo posicionado a la izquierda independientemente */
+.logo {
+    width: 50px ;
+    height: 50px ;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;
+    position: absolute; /* posición absoluta dentro del nav */
+    left: 0.5rem; /* pequeño margen izquierdo */
+    top: 26px;; /* centrar verticalmente */
+    transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    color: white;
+    
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    height: 20pt;
+    justify-content: center;
+}
+
+.dropdown input[type="checkbox"] {
+    display: none;
+}
+
+.dropdown label {
+    color: white;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    user-select: none;
+    text-align: center;
+    display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+}
+
+.dropdown label:hover {
+    background-color: #01a7e5;
+}
+@media (max-width: 460px) {
+  
+    .dropdown label{
+      font-size: 13px;
+      padding: 13px 13px;
+    }
+    .logo{
+        height: 50px;
+        width:  50px;
+        top:  22px;
+        left: -4px;
+    }
+
+  
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    margin-top: 5px;
+    background-color: rgb(0, 63, 235);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 160px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #01a7e5;
+}
+
+/* Mostrar menú al activar el checkbox */
+.dropdown input[type="checkbox"]:checked + label + .dropdown-menu {
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .dropdown-menu {
+        min-width: 140px;
+    }
+}
+.cabecera_img{
+    padding: 0%;
+    height: 450px;
+    width: 100%;
+
+}
+.titulo_cultura{
+    text-align: center;
+    position: relative;
+    top: -300px;
+    z-index: 20;
+    
+}
+
+.galeria {
+display: flex;
+flex-wrap: wrap; /* Permite que las imágenes se ajusten en varias filas */
+justify-content: center; /* Centra las imágenes horizontalmente */
+background: linear-gradient(to right,#edeff0,#eeeeee,#ffffff,#ffffff,#eeeeee,#edeff0);
+
+ background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)), url("bg03.png"), url("images/bg02.png");
+		background-repeat: repeat-x, no-repeat, repeat;
+		background-size: 100% 100%, 100% 15em, auto auto;
+		background-position: top left, top center, top left;
+width: 100%;
+z-index: 10;
+height: 100vh;
+
+}
+.imagen-container {
+margin: 10px; /* Espacio entre las imágenes */
+text-align: center; /* Centra el texto */
+font-family: 'Times New Roman', Times, serif;
+color: black;
+}
+.imagen-container img {
+width: 350px; /* Ancho de las imágenes */
+height: 250px; /* Mantiene la proporción de las imágenes */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+border: 10px solid white;
+border-radius: 20px 0px 20px 0px;
+}
+.imagen-container img:hover {
+            transform: scale(1.05);
+        }
+.titulo-imagen {
+margin-bottom: 5px; /* Espacio entre el título y la imagen */
+font-weight: bold; /* Hace que el texto sea más grueso */
+font-size: 20px;
+}
+.rectangulo_1{
+    flex-wrap: wrap; 
+    height: 18px;
+    width: 100%;
+    position: relative;
+    background-color: #01a7e5;
+
+     background-image: -moz-linear-gradient(top, rgba(153, 153, 153, 0), rgba(153, 153, 153, 0)), url("bg03.png"), url("bg02.png");
+		background-image: -webkit-linear-gradient(top, rgba(153, 153, 153, 0), rgba(153, 153, 153, 0)), url("bg03.png"), url("bg02.png");
+		background-image: -ms-linear-gradient(top, rgba(153, 153, 153, 0), rgba(153, 153, 153, 0)), url("bg03.png"), url("bg02.png");
+		background-image: linear-gradient(top, rgba(153, 153, 153, 0), rgba(153, 153, 153, 0)), url("bg03.png"), url("images/bg02.png");
+}
+.rectangulo_2{
+    flex-wrap: wrap;
+    height: 25px;
+    width: 100%;
+    position: relative;
+    background-color: rgb(0, 63, 235);
+
+     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("bg02.png");
+		background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("bg03.png"), url("images/bg02.png");
+   
+}
+
+ main {
+    max-width: var(--max-width);
+    width: 100%;
+    background-color: var(--container-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 12px var(--shadow-color);
+    padding: 2.5rem;
+    display: flex;
+    gap: var(--gap-space);
+    align-items: center;
+  }
+
+  /* Left container: image */
+  .left-container {
+    flex: 1 1 40%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 3px 6px var(--shadow-color);
+  }
+
+  .left-container img {
+    width:100%;
+    height: 950px;
+    display: block;
+    object-fit: cover;
+    padding: 5px 5px;
+    border: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  /* Right container: paragraph */
+  .right-container {
+    flex: 1 1 55%;
+    padding: 0 0.5rem;
+  }
+
+  .right-container p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 18px;
+    color: black; 
+    padding: 12px;
+  }
+
+  /* Responsive: stack vertically on narrow screens */
+  @media (max-width: 768px) {
+    main {
+      flex-direction: column;
+      padding: 1.5rem 1rem;
+      gap: 2rem;
+    }
+    .left-container, .right-container {
+      flex: none;
+      width: 100%;
+      padding: 0;
+    }
+    .right-container h2 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    .right-container p {
+      text-align: justify;
+    }
+  }
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merida</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Layout wrapper */
+  .app {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    max-width: auto;
+    width: 100%;
+    background: #000000;
+    border-radius: 12px;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 400px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+    border-right: 1px solid #000000;
+
+  }
+
+  .sidebar h2 {
+    font-weight: 700;
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+    color: #1db954;
+  }
+
+  .playlist {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .playlist-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  color: #000000;
+  }
+
+  .playlist-item:hover, .playlist-item.active {
+    background: #2a49fc;
+     box-shadow: 
+    0 5px 7px #000000,
+    0 5px 5px #383838;
+  }
+
+  .playlist-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 14px;
+  }
+
+  .playlist-item .info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .playlist-item .info .title {
+    font-weight: 600;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .playlist-item .info .artist {
+    font-size: 0.85rem;
+    color: #000000;
+  }
+
+  .playlist-item .play-icon {
+    color: #1db954;
+    cursor: pointer;
+    font-size: 28px;
+  }
+
+  /* Main content area */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    
+  }
+
+  /* Now playing section */
+  .now-playing {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid #000000;
+    background-color: #fff;
+    height: 100%;
+    
+  }
+
+  .now-playing img {
+    width: 240px;
+    height: 240px;
+    border-radius: 12px;
+    object-fit: cover;
+     box-shadow: 
+    0 12px 60px #383838,
+    0 12px 30px #383838;
+    
+  }
+
+  .now-playing-info {
+    flex: 1;
+  }
+
+  .now-playing-info h3 {
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #000000;
+  }
+
+  .now-playing-info p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #000000;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+    padding: 24px 0;
+    background-color: #ffffff;
+  }
+
+  button.control-btn {
+    background: transparent;
+    border: none;
+    color: #b3b3b3;
+    cursor: pointer;
+    font-size: 32px;
+    transition: color 0.25s ease;
+  }
+
+  button.control-btn:hover,
+  button.control-btn:focus {
+    color: #1db954;
+    outline: none;
+  }
+
+  button.control-btn.play-pause {
+    font-size: 44px;
+  }
+
+  /* Progress bar */
+  .progress-container {
+    width: 90%;
+    margin: 0 auto 24px auto;
+    background-color: #fff;
+  }
+
+  .progress-bar {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #868686;
+    cursor: pointer;
+  }
+
+  .progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1db954;
+    cursor: pointer;
+    margin-top: -4px;
+  }
+
+  .progress-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #00ff2a;
+    padding: 0 10px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .app {
+      flex-direction: column;
+      border-radius: 0;
+      max-width: none;
+    }
+
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #282828;
+      padding: 16px;
+     
+    }
+
+    .main {
+      flex: none;
+      width: 100%;
+    }
+
+    .now-playing {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .now-playing-info h3 {
+      font-size: 1.4rem;
+    }
+
+    .now-playing-info p {
+      font-size: 1rem;
+    }
+
+    .controls {
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    button.control-btn {
+      font-size: 28px;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar">
+
+<div>
+
+        <a class="logo" href="index.html">
+          <img src="img/M_logo.png" alt="logo" width="55px" height="auto" >
+        </a>
+
+</div>
+
+<div>
+
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdgJAMS53zEaR9kqs9JgmKtZc0khmXAusocyMLUa-GyuriWAQ/viewform?embedded=true">Encuestas</a>
+
+</div>
+
+<div>
+        <a class="nav-link" href="nosotros.html">Nosotros</a>
+</div>
+
+<div class="dropdown">
+
+  <input type="checkbox" id="toggle-menu" />
+  <label for="toggle-menu">Más opciones ▾</label>
+
+    <div class="dropdown-menu" role="menu" aria-labelledby="toggle-menu">
+
+      <a href="./cultura.html">Cultura</a>
+      <a href="./atracciones.html">Atracciones</a>
+      <a href="./flora.html">Flora y Fauna</a>
+      <a href="./musica.html">Musica</a>
+
+    </div>
+     
+    
+</nav>
+  <div class="app" role="main" aria-label="Reproductor de música tipo Spotify">
+    <nav class="sidebar" aria-label="Lista de canciones en la playlist">
+      <h2>Musica Merideña</h2>
+      <div class="playlist" id="playlist" role="list">
+        <!-- Songs injected by JS -->
+      </div>
+    </nav>
+
+    <section class="main" aria-label="Ahora reproduciendo">
+      <div class="now-playing">
+        <img src="" alt="Portada del álbum" id="now-playing-img" / src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2fab7421-0722-4253-8df5-76193db4ae86.png">
+        <div class="now-playing-info">
+          <h3 id="now-playing-title">Selecciona una canción</h3>
+          <p id="now-playing-artist"></p>
+        </div>
+      </div>
+
+      <div class="controls" role="group" aria-label="Controles de reproducción">
+        <button class="control-btn" id="prev-btn" aria-label="Canción anterior">
+          <span class="material-icons">skip_previous</span>
+        </button>
+        <button class="control-btn play-pause" id="play-pause-btn" aria-label="Reproducir/Pausar">
+          <span class="material-icons" id="play-pause-icon">play_arrow</span>
+        </button>
+        <button class="control-btn" id="next-btn" aria-label="Siguiente canción">
+          <span class="material-icons">skip_next</span>
+        </button>
+      </div>
+
+      <div class="progress-container">
+        <input type="range" id="progress-bar" class="progress-bar" min="0" max="100" value="0" aria-label="Barra de progreso de la canción"/>
+        <div class="progress-time">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <audio id="audio" preload="metadata"></audio>
+    </section>
+  </div>
+
+<script>
+  // Sample songs data
+  const songs = [
+    {
+      title: "Si Tu Regresas",
+      artist: "Los Serranitos",
+      albumArt: "https://i.scdn.co/image/ab67616d00001e0294db1be10ac1e4715276042d",
+      audioSrc: "musica/si_tu_regresas.mp3"
+    },
+    {
+      title: "Violines Andinos",
+      artist: "Raul Marquez",
+      albumArt: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7d/da/c0/7ddac069-9bb3-700b-1463-72862bf2c7d5/198391004674.jpg/600x600bf-60.jpg",
+      audioSrc: "musica/violines_andinos.mp3"
+    },
+    {
+      title: "Juana Polinaria",
+      artist: "Como Loco Funche",
+      albumArt: "https://i.scdn.co/image/ab67616d0000b27326b51ab22bd8bafde080799e",
+      audioSrc: "musica/juana_polinaria.mp3"
+    },
+    {
+      title: "Linda Merideña",
+      artist: "La Rollanda Venezolana",
+      albumArt: "https://cdn-images.dzcdn.net/images/cover/4f7d477719aae9c57205090747366e02/1900x1900-000000-80-0-0.jpg",
+      audioSrc: "musica/linda_merideña.mp3"
+    },
+    {
+      title: "Orgullo Andino",
+      artist: "Raquel Castaños",
+      albumArt: "https://i.scdn.co/image/ab67616d0000b2739b5f4eaabcac32846854014b",
+      audioSrc: "musica/orgullo_andino.mp3"
+    },
+    {
+      title: "Egoismo",
+      artist: "Julio Miranda",
+      albumArt: "https://i.ytimg.com/vi/LW-MUNEivUQ/hqdefault.jpg",
+      audioSrc: "musica/egoismo.mp3"
+    },
+    {
+      title: "Merida Que Linda Eres",
+      artist: "Los Melodicos",
+      albumArt: "https://i.scdn.co/image/ab67616d0000b2734cd94a893ecfe9fd9fe94c20",
+      audioSrc: "musica/merida_linda.mp3"
+    }
+  ];
+
+  const playlistContainer = document.getElementById("playlist");
+  const nowPlayingImg = document.getElementById("now-playing-img");
+  const nowPlayingTitle = document.getElementById("now-playing-title");
+  const nowPlayingArtist = document.getElementById("now-playing-artist");
+  const audio = document.getElementById("audio");
+  const playPauseBtn = document.getElementById("play-pause-btn");
+  const playPauseIcon = document.getElementById("play-pause-icon");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const progressBar = document.getElementById("progress-bar");
+  const currentTimeElem = document.getElementById("current-time");
+  const durationElem = document.getElementById("duration");
+
+  let currentSongIndex = -1;
+  let isPlaying = false;
+
+  // Build playlist UI
+  function buildPlaylist() {
+    songs.forEach((song, index) => {
+      const item = document.createElement("div");
+      item.classList.add("playlist-item");
+      item.setAttribute("role", "listitem");
+      item.setAttribute("tabindex", "0");
+      item.setAttribute("aria-label", `Reproducir ${song.title} de ${song.artist}`);
+
+      item.innerHTML = `
+        <img src="${song.albumArt}" alt="Portada de ${song.title}"/>
+        <div class="info">
+          <div class="title">${song.title}</div>
+          <div class="artist">${song.artist}</div>
+        </div>
+        <span class="material-icons play-icon" aria-hidden="true">play_circle_filled</span>
+      `;
+      // Click handler for play on item
+      item.querySelector(".play-icon").addEventListener("click", (e) => {
+        e.stopPropagation();
+        playSong(index);
+      });
+
+      // Click on entire item
+      item.addEventListener("click", () => {
+        playSong(index);
+      });
+
+      // Keyboard support - Enter key to play
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          playSong(index);
+        }
+      });
+
+      playlistContainer.appendChild(item);
+    });
+  }
+
+  function loadSong(index) {
+    if (index < 0 || index >= songs.length) return;
+    const song = songs[index];
+    audio.src = song.audioSrc;
+    nowPlayingImg.src = song.albumArt;
+    nowPlayingImg.alt = `Portada de ${song.title}`;
+    nowPlayingTitle.textContent = song.title;
+    nowPlayingArtist.textContent = song.artist;
+
+    // Highlight active item
+    Array.from(playlistContainer.children).forEach((item, i) => {
+      item.classList.toggle("active", i === index);
+    });
+
+    currentSongIndex = index;
+  }
+
+  function playSong(index) {
+    if (currentSongIndex !== index) {
+      loadSong(index);
+    }
+    audio.play();
+    isPlaying = true;
+    updatePlayPauseIcon();
+  }
+
+  function pauseSong() {
+    audio.pause();
+    isPlaying = false;
+    updatePlayPauseIcon();
+  }
+
+  function updatePlayPauseIcon() {
+    playPauseIcon.textContent = isPlaying ? "pause_circle_filled" : "play_circle_filled";
+
+    // Update play icons in playlist
+    Array.from(playlistContainer.children).forEach((item, i) => {
+      const icon = item.querySelector(".play-icon");
+      if (i === currentSongIndex && isPlaying) {
+        icon.textContent = "pause_circle_filled";
+        icon.style.color = "#1db954";
+      } else {
+        icon.textContent = "play_circle_filled";
+        icon.style.color = "#1db954";
+      }
+    });
+  }
+
+  // Previous song
+  prevBtn.addEventListener("click", () => {
+    if (currentSongIndex <= 0) {
+      playSong(songs.length - 1);
+    } else {
+      playSong(currentSongIndex - 1);
+    }
+  });
+
+  // Next song
+  nextBtn.addEventListener("click", () => {
+    if (currentSongIndex >= songs.length - 1) {
+      playSong(0);
+    } else {
+      playSong(currentSongIndex + 1);
+    }
+  });
+
+  // Play/pause toggle
+  playPauseBtn.addEventListener("click", () => {
+    if (!audio.src) {
+      playSong(0);
+    } else if (isPlaying) {
+      pauseSong();
+    } else {
+      audio.play();
+      isPlaying = true;
+      updatePlayPauseIcon();
+    }
+  });
+
+  // Update progress bar as song plays
+  audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+      const progressPercent = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = progressPercent;
+
+      currentTimeElem.textContent = formatTime(audio.currentTime);
+      durationElem.textContent = formatTime(audio.duration);
+    }
+  });
+
+  // Seek on progress bar click/drag
+  progressBar.addEventListener("input", () => {
+    if (audio.duration) {
+      const seekTime = (progressBar.value / 100) * audio.duration;
+      audio.currentTime = seekTime;
+    }
+  });
+
+  // When song ends, auto play next
+  audio.addEventListener("ended", () => {
+    nextBtn.click();
+  });
+
+  // Utility to format seconds to mm:ss
+  function formatTime(sec) {
+    const minutes = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  // Initialize playlist UI
+  buildPlaylist();
+
+  // Initialize with first song loaded but not playing
+  loadSong(0);
+  updatePlayPauseIcon();
+</script>
+</body>
+</html>
+
+
