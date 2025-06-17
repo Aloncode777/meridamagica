@@ -11,24 +11,36 @@
 
   <div class="video-intro">
     <video id="introVideo" autoplay muted>
-        <source src="intro.mp4" type="video/mp4"> <!-- Reemplaza con la ruta de tu video -->
+        <source src="intro.mp4" type="video/mp4"> 
         Tu navegador no soporta el video.
     </video>
 </div>
 <script>
-    // Example: Remove video intro after playback or after time
-    const videoIntro = document.querySelector('.video-intro');
-    const contenido = document.querySelector('.contenido');
-    const video = videoIntro.querySelector('video');
-    // If you want the video to stay and loop, remove this block.
-    // Or you could remove intro on user interaction, or after timeout
-    // For demo: Remove intro after 8 seconds:
-    setTimeout(() => {
-      videoIntro.style.display = 'none';
-      contenido.style.display = 'block';
-      contenido.focus();
-      document.body.style.overflow = 'auto'; // Restore scrolling
-    }, 15000);
+   document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById("introVideo");
+    const contenido = document.querySelector(".contenido");
+    const videoIntro = document.querySelector(".video-intro");
+
+    // Función para ocultar el video y mostrar el contenido
+    function mostrarContenido() {
+        // Desvanece el video
+        videoIntro.style.transition = "opacity 1s";
+        videoIntro.style.opacity = 0;
+
+        // Espera a que termine la transición y luego oculta el video
+        setTimeout(() => {
+            videoIntro.style.display = "none"; // Oculta el video
+            contenido.style.display = "block"; // Muestra el contenido
+        }, 1000); // Tiempo de espera igual al tiempo de transición
+    }
+
+    // Evento para cuando el video termina
+    video.addEventListener("ended", mostrarContenido);
+
+    // Evento para hacer clic en el video
+    video.addEventListener("click", mostrarContenido);
+});
+
   </script>
 
 <nav class="navbar">
@@ -81,7 +93,7 @@
     </div>
 
   <div class="content">
-    <h1>Merida Magica</h1>
+    <h1>Mérida Mágica</h1>
     <p>Un mundo por conocer</p>
   </div>
 
